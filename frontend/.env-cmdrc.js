@@ -8,7 +8,7 @@ const PROD = {
 const DEV = {
   REACT_APP_ENVIRONMENT: "Development",
   REACT_APP_API_ENDPOINT:
-    "https://contract-parser-api-s27o6wzppa-uc.a.run.app/",
+    "https://contract-parser-api-s27o6wzppa-uc.a.run.app/api/",
 };
 const LOCAL = {
   REACT_APP_ENVIRONMENT: "Local",
