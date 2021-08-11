@@ -1,6 +1,10 @@
 #!/bin/sh
 
 ENVIRONMENT="$1"
+ETH_API_KEY=$ETHERSCAN_API_KEY
+BSC_API_KEY=$BSCSCAN_API_KEY
+POLYGON_API_KEY=$POLYGONSCAN_API_KEY
+
 
 if [ "$ENVIRONMENT" == "dev" ]; then
     PROJECT_ID="nansen-contract-parser-dev"
@@ -25,4 +29,4 @@ gcloud run deploy contract-parser-api \
   --region us-central1 \
   --allow-unauthenticated \
   --service-account="contract-parser-api@${PROJECT_ID}.iam.gserviceaccount.com" \
-  --set-env-vars "PROJECT_ID=${PROJECT_ID},FIREBASE_PROJECT_ID=${FIREBASE_PROJECT_ID}"
+  --set-env-vars "PROJECT_ID=${PROJECT_ID},FIREBASE_PROJECT_ID=${FIREBASE_PROJECT_ID},ETHERSCAN_API_KEY=${ETH_API_KEY},POLYGONSCAN_API_KEY=${POLYGON_API_KEY},BSCSCAN_API_KEY=${BSC_API_KEY}"
