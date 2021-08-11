@@ -8,16 +8,7 @@ import Spinner from "react-bootstrap/Spinner";
 import Query from "./components/Query";
 import TableDefinitions from "./components/TableDefinitions";
 import ChainSelector from "./components/ChainSelector";
-
-var API_ENDPOINT = "";
-if (process.env.NODE_ENV === "development") {
-  // for developmenmt
-  API_ENDPOINT = "http://localhost:3000/api/";
-} else {
-  // in prod
-  API_ENDPOINT = "https://contract-parser-api-s27o6wzppa-uc.a.run.app/api/";
-  //API_ENDPOINT = 'https://abi-parser.now.sh/api/'; // NOTE: use this when deploying to Firebase
-}
+import { API_ENDPOINT } from "./constants/endpoints";
 
 const cardStyle = {
   width: 900,

@@ -57,10 +57,10 @@ Read below to understand how the project is deployed
 
 This is hosted on firebase. Currently there are two version of this.
 
-| Version     | Firebase Project Name       |
-| ----------- | --------------------------- |
-| Development | nansen-contract-parser-dev  |
-| Production  | nansen-contract-parser-prod |
+| Version     | Firebase Project Name       | URL                                          |
+| ----------- | --------------------------- | -------------------------------------------- |
+| Development | nansen-contract-parser-dev  | https://nansen-contract-parser-dev.web.app/  |
+| Production  | nansen-contract-parser-prod | https://nansen-contract-parser-prod.web.app/ |
 
 There are two important files that tell firebase how to host this, [.firebaserc](frontend/.firebaserc) and [firebase.json](frontend/firebase.json)
 
@@ -102,10 +102,10 @@ yarn deploy:prod
 
 This is currenty run on cloud-run under the following proejcts
 
-| Version     | GCP Project Name            |
-| ----------- | --------------------------- |
-| Development | nansen-contract-parser-dev  |
-| Production  | nansen-contract-parser-prod |
+| Version     | GCP Project Name            | URL                                                      |
+| ----------- | --------------------------- | -------------------------------------------------------- |
+| Development | nansen-contract-parser-dev  | https://contract-parser-api-s27o6wzppa-uc.a.run.app/api/ |
+| Production  | nansen-contract-parser-prod | https://contract-parser-api-7s4aptchzq-uc.a.run.app/api/ |
 
 There are a few important files that tell cloudrun how to run this properlly. [Dockerfile](contract-parser-api/Dockerfile) tells google how to run the containerized version of the project. [iam.sh](iam.sh) is a helper script to create the necessary service workers and set the correct roles. [deploy.sh](deploy.sh) is used to deploy the project in production and development environments.
 
