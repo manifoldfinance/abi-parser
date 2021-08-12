@@ -46,5 +46,11 @@ def deployer(contract, chain):
     return jsonify(info)
 
 
+@app.route('/api/deployed/<contract>/<chain>')
+def deployed(contract, chain):
+    info = bq.get_deployed_contracts(contract, chain)
+    return jsonify(info)
+
+
 if __name__ == "__main__":
     app.run(debug=True, host='127.0.0.1', port=constants.PORT)

@@ -124,3 +124,25 @@ WITH
 
 SELECT  * FROM deployment_info 
 '''
+
+SQL_DEPLOYED_CONTRACTS = '''
+
+WITH 
+    other_contracts AS (
+        SELECT  
+            d.contract,
+            d.deployer,
+            d.creator,
+            d.transaction_hash
+        FROM 
+            `nansen-datasets-prod.core_contracts.contract_deployments_enriched_for_deployer_on_{{chain}}` AS d
+        WHERE 
+            d._address_partition = `nansen-datasets-prod.udfs.ADDRESS_INT_PARTITION`('{{deployer_address}}')
+        AND 
+            d.deployer = '{{deployer_address}}'
+       
+)
+
+SELECT * FROM other_contracts
+
+'''

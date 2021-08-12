@@ -2,6 +2,15 @@ import re
 from modules import constants
 
 
+def validate_bq_args(address, chain):
+    valid_address, data = validate_address(address)
+    if valid_address:
+        valid_chain, data = validate_bq_chain(chain)
+        if valid_chain:
+            return True, data
+    return False, data
+
+
 def validate_address(address):
     pattern = "^0x[a-fA-F0-9]{40}$"
     # Checks whether the whole string matches the re.pattern or not
@@ -17,7 +26,7 @@ def validate_bq_chain(chain):
         return True, {}
     else:
         return False, {
-            "error": f"Chain: {chain} not supported! Currently only the following chains are supported {supported_chains}"}
+            "error": f"Chain: '{chain}' not supported! Currently only the following chains are supported {supported_chains}"}
 
 
 def validate_chain(chain):
@@ -26,5 +35,5 @@ def validate_chain(chain):
         return True, {}
     else:
         return False, {
-            "error": f"Chain: {chain} not supported! Currently only the following chains are supported {supported_chains}"
+            "error": f"Chain: '{chain}' not supported! Currently only the following chains are supported {supported_chains}"
         }
