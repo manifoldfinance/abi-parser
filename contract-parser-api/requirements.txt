@@ -7,3 +7,4 @@ Flask-Cors==3.0.9
 requests==2.22.0
 python-dotenv==0.19.0
 gunicorn==19.9.0
+google-cloud-bigquery==2.23.3 
