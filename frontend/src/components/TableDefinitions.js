@@ -21,27 +21,34 @@ export class TableDefinitions extends Component {
       (q) => q[1].parser.type === "trace"
     );
     return (
-      <Card className="m-3" style={{ width: 480 }} body>
-        <p>{`${events.length} events found in contract ${contract.ContractName}:`}</p>
-        <ol>
-          {events.map((obj) => (
-            <li>{obj[0]}</li>
-          ))}
-        </ol>
-        <p>{`${functions.length} functions found in contract ${contract.ContractName}:`}</p>
-        <ol>
-          {functions.map((obj) => (
-            <li>{obj[0]}</li>
-          ))}
-        </ol>
-        <InputDataset
-          tables={tables}
-          contract={contract}
-          dataset={dataset}
-          name={name}
-          handleChangeContractName={handleChangeContractName}
-          handleChangeDataset={handleChangeDataset}
-        />
+      <Card className="m-3" style={{ maxWidth: "100%" }}>
+        <Card.Title>
+          {" "}
+          Contract Details for:{" "}
+          {contract.ContractName ? contract.ContractName : contract}
+        </Card.Title>
+        <Card.Body>
+          <p>{`${events.length} events found in contract:`}</p>
+          <ol>
+            {events.map((obj) => (
+              <li>{obj[0]}</li>
+            ))}
+          </ol>
+          <p>{`${functions.length} functions found in contract ${contract.ContractName}:`}</p>
+          <ol>
+            {functions.map((obj) => (
+              <li>{obj[0]}</li>
+            ))}
+          </ol>
+          <InputDataset
+            tables={tables}
+            contract={contract}
+            dataset={dataset}
+            name={name}
+            handleChangeContractName={handleChangeContractName}
+            handleChangeDataset={handleChangeDataset}
+          />
+        </Card.Body>
       </Card>
     );
   }
