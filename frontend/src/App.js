@@ -25,8 +25,10 @@ class App extends Component {
       deployer: "",
       creator: "",
       otherContracts: [],
+      supportedBqChains: [],
     };
   }
+
   handleChainSubmit(e) {
     this.setState({
       chain: e,
@@ -72,6 +74,15 @@ class App extends Component {
     });
 
     await this.fetchDeployer();
+  }
+  async fetchSupportedContractHelperChains() {
+    const bqApi = `${API_ENDPOINT}supported_bq_chains`;
+    const bqRes = await fetch(bqApi);
+    const data = await bqRes.json();
+    this.setState({
+      supportedBqChains: data["chains"],
+    });
+    console.log(data);
   }
   async fetchDeployed() {
     const deployer = this.state.deployer;
@@ -133,6 +144,10 @@ class App extends Component {
     });
   }
 
+  async componentDidMount() {
+    this.fetchSupportedContractHelperChains();
+  }
+
   render() {
     const {
       queries,
@@ -147,6 +162,7 @@ class App extends Component {
       deployer,
       creator,
       otherContracts,
+      supportedBqChains,
     } = this.state;
     return (
       <div className="App">
@@ -172,6 +188,7 @@ class App extends Component {
             otherContracts={otherContracts}
             isDeployerLoading={isDeployerLoading}
             isDeployedLoading={isDeployedLoading}
+            supportedBqChains={supportedBqChains}
           />
           {isLoading && (
             <Card className="m-3" style={{ maxWidth: "100%" }}>
