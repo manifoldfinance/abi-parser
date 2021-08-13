@@ -21,7 +21,7 @@ def validate_address(address):
 
 
 def validate_bq_chain(chain):
-    supported_chains = ['ethereum', 'polygon']
+    supported_chains = constants.SUPPORTED_BQ_CHAINS
     if chain in supported_chains:
         return True, {}
     else:

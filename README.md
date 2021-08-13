@@ -122,6 +122,14 @@ gcloud auth login
 1. If this is the first time deploying run `bash iam.sh dev`, or `bash iam.sh prod`
 2. Next you can run `bash deploy.sh dev` or `bash deploy.sh prod` to deploy the backend to dev or prod set-up
 
+
+## Deploying Everything at Once
+
+To make things simple you can run the following script [deployAll.sh](deployAll.sh)
+
+dev: `bash deployAll.sh dev`
+prod: `bash deployAll.sh prod`
+
 ## Adding Support for More Chains
 
 1. Identify the etherscan built explorer for this chain. (ie: polygonscan, bscscan, ftmscan, ..)
@@ -129,3 +137,4 @@ gcloud auth login
 3. Note down the api URL
 4. Follow the steps in this [PR](https://github.com/nansen-ai/abi-parser/pull/41/files)
 5. Done, you have now added a new chain to contract-parser!
+
