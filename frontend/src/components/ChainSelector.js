@@ -28,6 +28,7 @@ export class ChainSelector extends Component {
                   <Dropdown.Item eventKey="binance-smart-chain">
                     Binance Smart Chain
                   </Dropdown.Item>
+                  <Dropdown.Item eventKey="fantom">Fantom</Dropdown.Item>
                 </DropdownButton>
               </Col>
               <Col>{this.props.chain}</Col>
