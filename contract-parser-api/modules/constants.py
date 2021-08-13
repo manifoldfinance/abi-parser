@@ -12,6 +12,10 @@ POLYGONSCAN_BASE_URL = 'https://api.polygonscan.com'
 BSCSCAN_BASE_URL = 'https://api.bscscan.com/'
 FTMSCAN_BASE_URL = 'https://api.ftmscan.com/'
 
+# Note this is for Contract Tools , and depends on if we have the underlying tables built
+# for the different chains
+SUPPORTED_BQ_CHAINS = ['ethereum', 'polygon']
+
 CHAINCONFIG = {'ethereum': {'API_KEY': ETHERSCAN_API_KEY, "BASE_URL": ETHERSCAN_BASE_URL},
                'polygon': {'API_KEY': POLYGONSCAN_API_KEY, "BASE_URL": POLYGONSCAN_BASE_URL},
                'binance-smart-chain': {'API_KEY': BSCSCAN_API_KEY, "BASE_URL": BSCSCAN_BASE_URL},

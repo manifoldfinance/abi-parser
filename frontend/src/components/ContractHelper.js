@@ -118,7 +118,11 @@ export class ContractHelper extends Component {
       <div>
         <Card className="m-3" style={{ maxWidth: "100%" }}>
           <Card.Body>
-            <Card.Title>Extra: Contract Tools</Card.Title>
+            <Card.Title>Extra: Contract Tools </Card.Title>
+            <b>
+              {" "}
+              Currently supports: {this.props.supportedBqChains.toString()}{" "}
+            </b>
             {deployerCreatorDetails}
           </Card.Body>
           <Card.Footer>

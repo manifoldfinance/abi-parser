@@ -52,5 +52,11 @@ def deployed(contract, chain):
     return jsonify(info)
 
 
+@app.route('/api/supported_bq_chains')
+def supported_bq_chains():
+    supported_bq_chains = constants.SUPPORTED_BQ_CHAINS
+    return jsonify({'chains': supported_bq_chains})
+
+
 if __name__ == "__main__":
     app.run(debug=True, host='127.0.0.1', port=constants.PORT)
