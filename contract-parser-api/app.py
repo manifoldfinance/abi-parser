@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-# from modules import bq
+from modules import bq
 from modules import utils
 from modules import constants
 from modules import scanapi
@@ -40,10 +40,16 @@ def contract(contract, chain):
     return jsonify(c)
 
 
-# @app.route('/api/deployer/<contract>/<chain>')
-# def deployer(contract, chain):
-#     info = bq.get_deployment_info(contract, chain)
-#     return jsonify(info)
+@app.route('/api/deployer/<contract>/<chain>')
+def deployer(contract, chain):
+    info = bq.get_deployment_info(contract, chain)
+    return jsonify(info)
+
+
+@app.route('/api/deployed/<contract>/<chain>')
+def deployed(contract, chain):
+    info = bq.get_deployed_contracts(contract, chain)
+    return jsonify(info)
 
 
 if __name__ == "__main__":
