@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import Web3 from 'web3';
+import axios from 'axios';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Input from "./components/Input";
 import Container from "react-bootstrap/Container";
@@ -16,6 +17,7 @@ class App extends Component {
         super(props);
         this.state = {
             contractAddress: "",
+            isAbi: false,
             dataset: "",
             name: "",
             chain: "ethereum",
@@ -35,9 +37,28 @@ class App extends Component {
         });
     }
     handleChange(e) {
+
+        const input = e.target.value;
+        let isAddress = Web3.utils.isAddress(input)
+
+        if (isAddress) {
+            console.log(`Address detected!`)
+            this.setState({
+                isAbi: false,
+            })
+        }
+        // probably ABI 
+        else {
+            console.log(`Abi detected!`)
+            this.setState({
+                isAbi: true,
+            })
+        }
         this.setState({
-            contractAddress: e.target.value,
+            contractAddress: input,
         });
+
+
     }
 
     handleChangeContractName(e) {
@@ -45,6 +66,7 @@ class App extends Component {
             name: e.target.value,
         });
         const clone = JSON.parse(JSON.stringify(this.state.contract));
+        console.log(clone)
         clone.ContractName = e.target.value;
         this.setState({
             contract: clone,
@@ -52,6 +74,7 @@ class App extends Component {
     }
 
     handleChangeDataset(e) {
+        console.log(e.target.value)
         this.setState({
             dataset: e.target.value,
         });
@@ -88,9 +111,10 @@ class App extends Component {
         const deployer = this.state.deployer;
         const chain = this.state.chain;
 
-        const deployedApi = `${API_ENDPOINT}deployed/${deployer.toLowerCase()}/${chain}`;
-        const deployedRes = await fetch(deployedApi);
-        const otherContracts = await deployedRes.json();
+        const msgBody = { "deployer": deployer.toLowerCase() }
+        const deployedApi = `${API_ENDPOINT}deployed/${chain}`;
+        const deployedRes = await axios.post(deployedApi, msgBody);
+        const otherContracts = await deployedRes.data;
         this.setState({
             otherContracts,
             isDeployedLoading: false,
@@ -100,10 +124,10 @@ class App extends Component {
     async fetchDeployer() {
         const contractAddress = this.state.contractAddress;
         const chain = this.state.chain;
-
-        const deployerApi = `${API_ENDPOINT}deployer/${contractAddress.toLowerCase()}/${chain}`;
-        const deployerRes = await fetch(deployerApi);
-        const data = await deployerRes.json();
+        const msgBody = { "contract": contractAddress.toLowerCase() }
+        const deployerApi = `${API_ENDPOINT}deployer/${chain}`;
+        const deployerRes = await axios.post(deployerApi, msgBody);
+        const data = deployerRes.data;
         const deployer = data["deployer"];
         const creator = data["creator"];
 
@@ -123,17 +147,18 @@ class App extends Component {
     }
 
     async fetchData() {
-        const contractAddress = this.state.contractAddress;
         const chain = this.state.chain;
-        const queriesApi = `${API_ENDPOINT}queries/${contractAddress}/${chain}`;
-        const queriesRes = await fetch(queriesApi);
-        const queries = await queriesRes.json();
-        const tablesApi = `${API_ENDPOINT}tables/${contractAddress}/${chain}`;
-        const tablesRes = await fetch(tablesApi);
-        const tables = await tablesRes.json();
-        const contractApi = `${API_ENDPOINT}contract/${contractAddress}/${chain}`;
-        const contractRes = await fetch(contractApi);
-        const contract = await contractRes.json();
+        const contractAddress = this.state.contractAddress;
+        const msgBody = { "contract": contractAddress }
+        const queriesApi = `${API_ENDPOINT}queries/${chain}`;
+        const queriesRes = await axios.post(queriesApi, msgBody);
+        const queries = await queriesRes.data;
+        const tablesApi = `${API_ENDPOINT}tables/${chain}`;
+        const tablesRes = await axios.post(tablesApi, msgBody);
+        const tables = await tablesRes.data;
+        const contractApi = `${API_ENDPOINT}contract/${chain}`;
+        const contractRes = await axios.post(contractApi, msgBody);
+        const contract = await contractRes.data;
         const name = contract.ContractName;
         this.setState({
             name,

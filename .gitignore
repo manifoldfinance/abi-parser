@@ -6,6 +6,7 @@ api/__pycache__/
 build
 .fiebase
 node_modules
+contract-parser-api/modules/__pycache__/
 # dependencies
 /node_modules
 /.pnp
