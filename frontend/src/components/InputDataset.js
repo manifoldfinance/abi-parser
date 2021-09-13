@@ -7,7 +7,7 @@ export class InputDataset extends Component {
     render() {
         const {
             tables,
-            contract,
+            // contract,
             dataset,
             name,
             handleChangeDataset,
@@ -45,7 +45,7 @@ export class InputDataset extends Component {
                                 required
                             />
                         </Form.Group>
-                        <Downloader tables={tables} contract={contract} dataset={dataset} />
+                        <Downloader tables={tables} contract={name} dataset={dataset} />
                     </Form>
                 </Card>
             </div>
