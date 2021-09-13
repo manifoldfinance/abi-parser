@@ -6,7 +6,6 @@ export class Downloader extends Component {
 
     render() {
         const { tables, contract, dataset } = this.props;
-        const { ContractName } = contract;
         return (
             <div>
                 <Button
@@ -16,7 +15,7 @@ export class Downloader extends Component {
                         const events = Object.entries(tables).filter(q => q[1].parser.type === 'log');
                         multiDownload(
                             events.map(obj => {
-                                const tableName = ContractName + '_event_' + obj[0];
+                                const tableName = contract + '_event_' + obj[0];
                                 obj[1].table.dataset_name = dataset;
                                 obj[1].table.table_name = tableName;
                                 return URL.createObjectURL(
@@ -25,7 +24,7 @@ export class Downloader extends Component {
                             }
                             ),
                             {
-                                rename: ({ url, index, urls }) => ContractName + '_event_' + events[index][0] + '.json'
+                                rename: ({ url, index, urls }) => contract + '_event_' + events[index][0] + '.json'
                             }
                         );
                     }}
