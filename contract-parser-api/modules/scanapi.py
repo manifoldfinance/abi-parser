@@ -60,6 +60,10 @@ def read_contract(contract, chain):
             return {
             'ContractName': 'unknown'
         }
+    else:
+        return {
+            'ContractName': 'unknown'
+        }
         
         
         
