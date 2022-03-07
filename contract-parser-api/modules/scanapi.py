@@ -52,8 +52,7 @@ def read_contract(contract, chain):
         if json_response.status_code == 200:
             try:
                 json_response = json_response.json()
-                contract = [x for x in json_response['result']
-                    if 'ContractName' in x][0]
+                contract = [x for x in json_response['result'] if 'ContractName' in x][0]
                 return contract
             except Exception as e:
                 print(e)
