@@ -17,7 +17,7 @@ POLYGONSCAN_BASE_URL = 'https://api.polygonscan.com'
 BSCSCAN_BASE_URL = 'https://api.bscscan.com'
 FTMSCAN_BASE_URL = 'https://api.ftmscan.com'
 ARBISCAN_BASE_URL = 'https://api.arbiscan.io'
-OPTIMISMSCAN_BASE_URL = 'https://api.optimistic.etherscan.io/'
+OPTIMISMSCAN_BASE_URL = 'https://api-optimistic.etherscan.io/'
 AVALANCHESNOWTRACE_BASE_URL = 'https://api.snowtrace.io/'
 
 
